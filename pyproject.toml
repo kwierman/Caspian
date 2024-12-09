@@ -1,0 +1,33 @@
+[project]
+name = "caspian"
+version = "0.1.0"
+description = ""
+authors = ["Kevin Wierman <kwierman@gmail.com>"]
+readme = "README.md"
+
+
+[tool.poetry]
+name = "caspian"
+version = "0.1.0"
+description = ""
+authors = ["Kevin Wierman <kwierman@gmail.com>"]
+readme = "README.md"
+
+[toool.poetry.scripts]
+caspian="caspian:cli"
+
+[project.entry-points."caspian"]
+caspian = "caspian:cli"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+dask = "^2024.7.0"
+distributed = "^2024.7.0"
+fastapi = "^0.111.0"
+uvicorn = "^0.32.1"
+sqlalchemy = "^2.0.31"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
