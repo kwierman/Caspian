@@ -13,6 +13,8 @@ Dask Design Patterns for Data Lakes
 * Open Source License: MIT license
 * Documentation: https://caspian.readthedocs.io.
 
-## Columnar Datasets
+# Installation
 
-In the event that your data _looks_ like it can fit into tabular data, but is sparse enough that putting this particular square peg into a round hole, s
+# Usage
+
+# Concepts

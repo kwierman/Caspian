@@ -4,6 +4,7 @@ import click
 import logging
 import uvicorn
 from query.api import app
+from dask.distributed import Client
 
 from caspian import logger
 
@@ -30,7 +31,7 @@ def etl():
     ...
     
 @cli.command('location', help='The Datalake location URI')
-def query():
+def query_server():
     ...
 
 @cli.command()
