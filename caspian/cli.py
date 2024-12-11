@@ -3,7 +3,7 @@
 import click
 import logging
 import uvicorn
-from query.api import app
+from .query.api import app
 from dask.distributed import Client
 
 from caspian import logger
@@ -27,20 +27,21 @@ def run_server(debug, scheduler):
     uvicorn.run(app_instance)
 
 @cli.command()
-def etl():
+def materialize():
     ...
     
-@cli.command('location', help='The Datalake location URI')
-def query_server():
+@cli.command()
+@click.option('--location',default='localhost', help='The Datalake location URI')
+def query_server(location):
     ...
 
 @cli.command()
-@click.argument('location', help='The Datalake location URI')
+@click.option('--location',default='localhost', help='The Datalake location URI')
 def declare(location):
     ...
 
 @cli.command()
-@click.argument('location', help='The Datalake location URI')
+@click.option('--location',default='localhost', help='The Datalake location URI')
 def describe(location):
     ...
 
