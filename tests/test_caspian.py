@@ -54,7 +54,7 @@ class TestCaspian(unittest.TestCase):
 
     def test_command_line_interface(self):
         runner = CliRunner()
-        result = runner.invoke(cli.main)
+        result = runner.invoke(cli.cli)
         assert result.exit_code == 0
         """
         assert 'caspian.cli.main' in result.output
