@@ -1,0 +1,2 @@
+versioneer.py export-subst
+version.py export-subst

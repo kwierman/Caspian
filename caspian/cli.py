@@ -65,17 +65,17 @@ def etl(): ...
 
 
 @cli.command()
-@click.argument("location")
-def query(): ...
+@click.option('--location',default='localhost', help='The Datalake location URI')
+def query(location): ...
 
 
 @cli.command()
-@click.argument("location")
+@click.option('--location',default='localhost', help='The Datalake location URI')
 def declare(location): ...
 
 
 @cli.command()
-@click.argument("location")
+@click.option('--location',default='localhost', help='The Datalake location URI')
 def describe(location): ...
 
 
