@@ -6,7 +6,7 @@ from uuid import uuid4
 schema_type = Dict[str, type]
 
 
-def wide_records_to_long_records(record: dict)-> List[Dict]:
+def wide_records_to_long_records(record: dict) -> List[Dict]:
     """Take in wide records and turns them into long records
 
     Args:
@@ -18,11 +18,13 @@ def wide_records_to_long_records(record: dict)-> List[Dict]:
     output = []
 
     for key, value in record.items():
-        output.append({'key':key, 'value': value})
+        output.append({"key": key, "value": value})
     return output
 
 
-def infer_schema_from_bag(bag: Bag, index_col: str, n_samples: Union[int, None] = None) -> schema_type:
+def infer_schema_from_bag(
+    bag: Bag, index_col: str, n_samples: Union[int, None] = None
+) -> schema_type:
     """Infers the schema of the dictionary-encoded items in the databag (assumes the bag is a collection of dictionaries representing records)
 
     Args:
@@ -37,18 +39,22 @@ def infer_schema_from_bag(bag: Bag, index_col: str, n_samples: Union[int, None] 
         bag = bag.take(n_samples)
 
     bag = bag.map(wide_records_to_long_records).flatten()
-    schema = bag.distinct('key').map(lambda x: {'key':x['key'], 'type': type(x['value'])}).compute()
+    schema = (
+        bag.distinct("key")
+        .map(lambda x: {"key": x["key"], "type": type(x["value"])})
+        .compute()
+    )
     output = {}
     for item in schema:
-        output[item['key']] = item['type']
+        output[item["key"]] = item["type"]
     if index_col in output.keys():
         del output[index_col]
 
     return output
 
 
-def bag_to_column(bag: Bag, col_name: str, col_type: str ):
-    """ Take in a bag and reduces it to the column name and type and then outputs 
+def bag_to_column(bag: Bag, col_name: str, col_type: str):
+    """Take in a bag and reduces it to the column name and type and then outputs
 
     Args:
         bag (_type_): _description_
@@ -58,8 +64,10 @@ def bag_to_column(bag: Bag, col_name: str, col_type: str ):
     ...
 
 
-def write_bag_to_columnar_dataset( bag, location, index_col=None, schema=None, n_samples=None):
-    """ Writes a bag to a columnar dataset
+def write_bag_to_columnar_dataset(
+    bag, location, index_col=None, schema=None, n_samples=None
+):
+    """Writes a bag to a columnar dataset
 
     Args:
         bag (_type_): _description_

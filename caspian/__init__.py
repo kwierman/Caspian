@@ -1,3 +1,3 @@
 import logging
 
-logger = logging.getLogger('caspian')
+logger = logging.getLogger("caspian")
